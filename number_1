@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Book {
+public:
+    string author, title;
+    double price;
+    int book_number, num_copies;
+    Book(string a, double p, string t, int bn, int nc) {
+        author = a; price = p; title = t; book_number = bn; num_copies = nc;
+    }
+};
+
+int main() {
+    vector<Book> books;
+    int choice;
+    cout << "1. Add Book\n2. Display Books\nEnter your choice: ";
+    cin >> choice;
+    if (choice == 1) {
+        string a, t;
+        double p;
+        int bn, nc;
+        cout << "Enter the author: "; cin >> a;
+        cout << "Enter the price: "; cin >> p;
+        cout << "Enter the title: "; cin >> t;
+        cout << "Enter the book number: "; cin >> bn;
+        cout << "Enter the number of copies: "; cin >> nc;
+        Book book(a, p, t, bn, nc);
+        books.push_back(book);
+    } else if (choice == 2) {
+        string librarian;
+        cout << "Are you the chief librarian? (y/n): ";
+        cin >> librarian;
+        if (librarian == "y") {
+            cout << "List of all books in the database:\nAuthor\t\tPrice\tTitle\t\tBook Number\tNumber of Copies\n";
+            for (Book book : books) {
+                cout << book.author << "\t" << book.price << "\t" << book.title << "\t" << book.book_number << "\t\t" << book.num_copies << endl;
+            }
+        } else {
+            cout << "You are not authorized to perform this action." << endl;
+        }
+    } else {
+        cout << "Invalid choice" << endl;
+    }
+    return 0;
+}
