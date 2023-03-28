@@ -4,7 +4,7 @@
 #include<string>
 using namespace std;
 
-//creation of class details 
+//creation of class details
 class Details
 {
     protected:
@@ -14,7 +14,7 @@ class Details
     int phone_number;
     float A;
     float airtime = A;
-    
+
     public:
 
     //creation of constuctor Details.
@@ -48,14 +48,16 @@ class Details
 
         else
         cout<<"NO BONUS AWARDED";
+
+        return 0;
     }
 
     //function which desplays the full details of a subscriber and bonuspoints.
-    int getdetails()
+    void getdetails()
     {
         cout<<endl<<endl;
         cout<<subscriber_name<<":"<<"("<<"PHONE NO:"<<phone_number<<"):"<<compute_bonuspoints()<<endl;
-        return 0;
+
 
     }
 };
@@ -66,5 +68,5 @@ int main()
     Details D;
     D.compute_bonuspoints();
     D.getdetails();
-    system("pause>0");
+    system("pause>null");
 }
