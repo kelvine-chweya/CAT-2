@@ -4,46 +4,91 @@
 
 using namespace std;
 
+// Definition of the Book class.
 class Book {
 public:
     string author, title;
     double price;
     int book_number, num_copies;
+
+    // Constructor that initializes the member variables.
     Book(string a, double p, string t, int bn, int nc) {
-        author = a; price = p; title = t; book_number = bn; num_copies = nc;
+        author = a;
+        price = p;
+        title = t;
+        book_number = bn;
+        num_copies = nc;
     }
 };
 
+// The main function of the program.
 int main() {
+    // Creates a vector to store all the books in the database.
     vector<Book> books;
-    int choice;
-    cout << "1. Add Book\n2. Display Books\nEnter your choice: ";
-    cin >> choice;
-    if (choice == 1) {
-        string a, t;
-        double p;
-        int bn, nc;
-        cout << "Enter the author: "; cin >> a;
-        cout << "Enter the price: "; cin >> p;
-        cout << "Enter the title: "; cin >> t;
-        cout << "Enter the book number: "; cin >> bn;
-        cout << "Enter the number of copies: "; cin >> nc;
-        Book book(a, p, t, bn, nc);
-        books.push_back(book);
-    } else if (choice == 2) {
-        string librarian;
-        cout << "Are you the chief librarian? (y/n): ";
-        cin >> librarian;
-        if (librarian == "y") {
-            cout << "List of all books in the database:\nAuthor\t\tPrice\tTitle\t\tBook Number\tNumber of Copies\n";
-            for (Book book : books) {
-                cout << book.author << "\t" << book.price << "\t" << book.title << "\t" << book.book_number << "\t\t" << book.num_copies << endl;
+
+    char choice = 'y';
+    while (choice == 'y') {
+        int option;
+        cout << "1. Add Book\n2. Display Books\nEnter your choice: ";
+        cin >> option;
+
+        // If the user chooses to add a book.
+        if (option == 1) {
+            string a, t;
+            double p;
+            int bn, nc;
+
+            cout << "Enter the author: ";
+            cin >> a;
+            cout << "Enter the price: ";
+            cin >> p;
+            cout << "Enter the title: ";
+            cin >> t;
+            cout << "Enter the book number: ";
+            cin >> bn;
+            cout << "Enter the number of copies: ";
+            cin >> nc;
+
+            // Creates a new Book object with the user's input and adds it to the vector of books.
+            Book book(a, p, t, bn, nc);
+            books.push_back(book);
+
+            cout << "Do you want to add another book? (y/n): ";
+            cin >> choice;
+
+        // If the user chooses to display the books.
+        } else if (option == 2) {
+            string librarian;
+            cout << "Are you the chief librarian? (y/n): ";
+            cin >> librarian;
+
+            // If the user is authorized to view the books, display them.
+            if (librarian == "y") {
+                // If no books have been added yet, inform the user.
+                if (books.empty()) {
+                    cout << "No books in the database yet." << endl;
+                } else {
+                    cout << "List of all books in the database:\nAuthor\t\tPrice\tTitle\t\tBook Number\tNumber of Copies\n";
+                    for (Book book : books) {
+                        cout << book.author << "\t" << book.price << "\t" << book.title << "\t" << book.book_number << "\t\t" << book.num_copies << endl;
+                    }
+                }
+
+            // If the user is not authorized to view the books, inform them.
+            } else {
+                cout << "You are not authorized to perform this action." << endl;
             }
+
+            cout << "Do you want to view the list of books again? (y/n): ";
+            cin >> choice;
+
+        // If the user enters an invalid choice.
         } else {
-            cout << "You are not authorized to perform this action." << endl;
+            cout << "Invalid choice" << endl;
+            cout << "Do you want to try again? (y/n): ";
+            cin >> choice;
         }
-    } else {
-        cout << "Invalid choice" << endl;
     }
+
     return 0;
 }
