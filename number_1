@@ -79,7 +79,7 @@ int main() {
                 cout << "You are not authorized to perform this action." << endl;
             }
 
-            cout << "Do you want to view the list of books again? (y/n): ";
+            cout << "Do you want to view the list of options again? (y/n): ";
             cin >> choice;
 
         // If the user enters an invalid choice.
